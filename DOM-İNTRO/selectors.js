@@ -36,9 +36,13 @@ document.getElementById("js-li").innerText = "<h2>JS</h2>"
 document.getElementById("react-li").innerHTML = "REACT-JS"
 document.getElementById("react-li").innerHTML = "<h2 style='color:blue'>REACT-JS </h2>" //bu riskli bir durum bunu html olarak algılar ve html dosyası gibi kulalnılabilir. ama bu güvenli dğil.
 
+// !input'arın değerinin okunması /yazılması 
+const myInput = document.getElementById("input")
+console.log(myInput.value);
+// !bir inputun değeri value propu ile okunur
 
-
-
+const addBtn = document.getElementById("btn") 
+addBtn.value = "SUBMİT" //değiştirdik ADD submit oldu
 
 
 
@@ -48,14 +52,80 @@ document.getElementById("react-li").innerHTML = "<h2 style='color:blue'>REACT-JS
 //*          GETELEMENTSBYTAGNAME()
 //*===========================================
 
+const allLi = document.getElementsByTagName("li")
+console.log(allLi); //?HTML collection 
+
+
+// ?tek tek nasıl erişiriz.html collectiondaki her bir elemente inisleme ile erişilebilir.
+console.log(allLi[1].textContent);
+
+
+// ? toplu bir erişim için for yapılaı kullanılabilir.
+for (let li of allLi ){
+    console.log(li.textContent);
+    allLi[2].textContent ="JS-REACTT" //bu şekilde değiştirebilirz.
+} //her bir linin tex contentini içeriğini dön
+
+
+// !array -like grubunda direk array metodları kullanılmaz.
+// çözüm olarak array-like grubu araraya çevrilebilir.
+// ?alternatif olarak 
+
+// ?1-spread 
+const arrALLli = [...allLi]
+console.log(arrALLli);
+
+arrALLli.forEach((li)=>(li.style.color = "fuchsia"))
+
+
+// ? array.from()
+Array.from(allLi).map((li)=>(li.style.backgroundColor="green"))
+
+
 //*===========================================
 //*          GETELEMENTSBYCLASSNAME()
 //*===========================================
+const myList = document.getElementsByClassName("list") //html collections
+myList[0].innerText="HTML dersleri"
+document.getElementsByClassName("item-list")[0].style.color = "hotpink"
+
+
+
+
+
 
 //* ========================================
 //*              QUERYSELECTOR()
 //* ========================================
+// !qery selector ile ıd ,tag,class seçilebilir.
+// !bu seçici akıştaki gördüğü ilk elemnti alır.
+// ?id almak için # 
+
+console.log(document.querySelector("#btn"));
+
+// ? class almak için  .
+console.log(document.querySelector(".item-list"));
+
+// ?tag almak için 
+console.log(document.querySelector("li")); //ilk gördüğü elementi seçer.
+
+
+// ? CSS selektörleri query selector ile kullanlıabilir.
+
+const myH3 =document.querySelector("main section.item-list h3")
+console.log(myH3);
+
+const react = document.querySelector("ul li:nth-child(4)")
+
+react.style.backgroundColor = "gray"
+
+
 
 //* ========================================
 //*              QUERYSELECTORALL()
 //* ========================================
+
+const liste = document.querySelectorAll(".item-list .list")
+console.log(liste); //?Nodelist
+//* querySelectorAll bir nodelist dondurur. Nodelist dahili olarak forEach metodunu barindirir. Ama istenirse spread veya Array.from() ile yine Array'e donusum yapilabilir.
+liste.forEach((li) => console.log(li.innerText))
